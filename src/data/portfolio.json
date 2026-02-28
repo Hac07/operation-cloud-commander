@@ -1,0 +1,194 @@
+{
+  "profile": {
+    "name": "Khush Jain",
+    "title": "Cloud Engineering Leader",
+    "location": "Pune, India",
+    "phone": "+91 8780791994",
+    "email": "khushjain12368@gmail.com",
+    "linkedin": "linkedin.com/in/khush-jain",
+    "summary": "Seasoned Cloud Engineering Leader with 7+ years architecting and delivering cloud-native systems on AWS. Proven track record driving cost optimization, resilience improvements, and GenAI adoption at scale. Led cross-functional teams, shipped mission-critical platforms, and translated business goals into robust cloud solutions."
+  },
+  "heroStats": [
+    { "id": "savings", "value": "$264K", "label": "Annual Cloud Savings", "suffix": "/yr" },
+    { "id": "rto", "value": "66%", "label": "RTO Reduction", "suffix": "" },
+    { "id": "provisioning", "value": "60%", "label": "Faster Provisioning", "suffix": "" },
+    { "id": "engineers", "value": "4", "label": "Engineers Led", "suffix": "+" }
+  ],
+  "skills": [
+    {
+      "category": "Cloud Platforms",
+      "skills": ["AWS EC2", "AWS Lambda", "AWS S3", "AWS RDS", "AWS CloudFront", "AWS WAF", "AWS Bedrock", "AWS IAM", "AWS CloudWatch", "AWS Cost Explorer"]
+    },
+    {
+      "category": "DevOps & IaC",
+      "skills": ["Terraform", "AWS CDK", "Docker", "Kubernetes", "GitHub Actions", "Jenkins", "Ansible"]
+    },
+    {
+      "category": "Languages & Frameworks",
+      "skills": ["Python", "TypeScript", "Node.js", "FastAPI", "Next.js", "Bash/Shell"]
+    },
+    {
+      "category": "AI & ML",
+      "skills": ["AWS Bedrock", "LLM Integration", "Prompt Engineering", "RAG Architecture", "LangChain"]
+    },
+    {
+      "category": "Security & Compliance",
+      "skills": ["ISO 27001", "WAF Configuration", "DDoS Mitigation", "IAM Hardening", "Data Lifecycle Governance"]
+    },
+    {
+      "category": "Observability",
+      "skills": ["CloudWatch", "Prometheus", "Grafana", "AWS X-Ray", "PagerDuty"]
+    }
+  ],
+  "timeline": [
+    {
+      "period": "2022 – Present",
+      "role": "Cloud Engineering Lead",
+      "company": "Finastra",
+      "summary": "Leading cloud delivery for a fintech lending platform. Managing a team of 4 engineers. Architected GenAI infrastructure, drove cost optimization, and improved system resilience."
+    },
+    {
+      "period": "2020 – 2022",
+      "role": "Senior Cloud Engineer",
+      "company": "Finastra",
+      "summary": "Designed and implemented scalable AWS architectures. Led WAF/security hardening and S3 lifecycle automation initiatives. Reduced operational overhead and improved compliance posture."
+    },
+    {
+      "period": "2018 – 2020",
+      "role": "Cloud Engineer",
+      "company": "Persistent Systems",
+      "summary": "Built and maintained cloud infrastructure for enterprise clients. Delivered infrastructure-as-code pipelines using Terraform and AWS CDK. Supported DevOps culture adoption across teams."
+    }
+  ],
+  "missions": [
+    {
+      "id": "mission-genai-portal",
+      "title": "Operation GenAI Portal",
+      "tagline": "LLM provisioning at 60% faster velocity",
+      "challenge": "Engineering teams spent weeks manually provisioning LLM environments and integrating AWS Bedrock services, creating a bottleneck that slowed AI experimentation and product delivery.",
+      "solution": "Designed and shipped a self-service LLM provisioning portal backed by AWS Bedrock. Automated environment setup with Terraform modules and built a unified API gateway for multi-model routing. Implemented cost guardrails and usage dashboards.",
+      "impactMetrics": [
+        { "label": "Provisioning Speed", "value": "60", "suffix": "% faster" },
+        { "label": "Models Supported", "value": "8", "suffix": "+" },
+        { "label": "Teams Unblocked", "value": "6", "suffix": "" }
+      ],
+      "techStack": ["AWS Bedrock", "Terraform", "Python", "FastAPI", "AWS API Gateway", "TypeScript", "CloudWatch"],
+      "period": "2023 – 2024",
+      "company": "Finastra",
+      "position": [-3, 0.5, -1],
+      "color": "#00f5d4"
+    },
+    {
+      "id": "mission-fintech-leadership",
+      "title": "Operation Fintech Command",
+      "tagline": "Cloud delivery leadership for lending platform",
+      "challenge": "The lending platform's cloud operations lacked engineering leadership. Delivery timelines were slipping, infrastructure debt was growing, and cross-team alignment was missing.",
+      "solution": "Stepped in as Cloud Engineering Lead managing 4 engineers. Established sprint cadences, introduced infrastructure review gates, and built a shared AWS architecture playbook. Reduced P1 incidents by introducing runbooks and on-call rotation.",
+      "impactMetrics": [
+        { "label": "Engineers Led", "value": "4", "suffix": "" },
+        { "label": "Delivery Velocity", "value": "40", "suffix": "% faster" },
+        { "label": "P1 Incidents", "value": "50", "suffix": "% fewer" }
+      ],
+      "techStack": ["AWS", "Terraform", "GitHub Actions", "Jira", "Confluence", "PagerDuty"],
+      "period": "2022 – Present",
+      "company": "Finastra",
+      "position": [3, 0.5, -1],
+      "color": "#f72585"
+    },
+    {
+      "id": "mission-cost-optimization",
+      "title": "Operation Cost Siege",
+      "tagline": "S3 lifecycle automation saving $4K/month",
+      "challenge": "Uncontrolled S3 storage costs were spiraling due to lack of data lifecycle governance. Terabytes of stale objects were accumulating across buckets with no automated cleanup.",
+      "solution": "Built an automated S3 lifecycle governance system using Lambda and CloudWatch Events. Created tiering policies (S3 → Glacier → deletion), tagging enforcement via AWS Config rules, and a monthly cost dashboard surfacing savings.",
+      "impactMetrics": [
+        { "label": "Monthly Savings", "value": "$4,000", "suffix": "/mo" },
+        { "label": "Storage Reduced", "value": "35", "suffix": "%" },
+        { "label": "Buckets Governed", "value": "120", "suffix": "+" }
+      ],
+      "techStack": ["AWS S3", "AWS Lambda", "CloudWatch Events", "AWS Config", "Python", "Cost Explorer"],
+      "period": "2021 – 2022",
+      "company": "Finastra",
+      "position": [0, 0.5, 2],
+      "color": "#ffd60a"
+    },
+    {
+      "id": "mission-resilience-rearchitecture",
+      "title": "Operation Iron Uptime",
+      "tagline": "RTO 18h → 6h, saving $260K/year",
+      "challenge": "The lending platform's disaster recovery was theoretical — RTO was 18 hours with untested playbooks. A real outage would cost hundreds of thousands in penalties and lost business.",
+      "solution": "Re-architected disaster recovery using multi-AZ RDS, cross-region S3 replication, and automated failover runbooks. Introduced chaos testing with AWS Fault Injection Simulator. Cut RTO from 18h to 6h and validated through quarterly DR drills.",
+      "impactMetrics": [
+        { "label": "RTO Reduction", "value": "66", "suffix": "%" },
+        { "label": "Annual Savings", "value": "$260K", "suffix": "/yr" },
+        { "label": "Uptime SLA", "value": "99.95", "suffix": "%" }
+      ],
+      "techStack": ["AWS RDS Multi-AZ", "AWS FIS", "S3 Cross-Region Replication", "Route 53", "Lambda", "Terraform"],
+      "period": "2022 – 2023",
+      "company": "Finastra",
+      "position": [-3, 0.5, 2],
+      "color": "#7209b7"
+    },
+    {
+      "id": "mission-security-compliance",
+      "title": "Operation Cyber Shield",
+      "tagline": "WAF + ISO 27001 alignment, 2PB data cleanup",
+      "challenge": "The platform faced DDoS and bot traffic with no WAF controls. Simultaneously, an ISO 27001 audit exposed 2+ PB of non-compliant data without proper retention policies or access controls.",
+      "solution": "Deployed AWS WAF on CloudFront with custom rule groups for bot mitigation and rate limiting. Led the data governance remediation — implemented S3 Object Lock, automated retention policies, and IAM least-privilege hardening. Passed ISO 27001 certification.",
+      "impactMetrics": [
+        { "label": "Data Cleaned Up", "value": "~2PB", "suffix": "" },
+        { "label": "Bot Traffic Blocked", "value": "98", "suffix": "%" },
+        { "label": "Compliance", "value": "ISO 27001", "suffix": "" }
+      ],
+      "techStack": ["AWS WAF", "CloudFront", "AWS IAM", "S3 Object Lock", "AWS Config", "GuardDuty", "Security Hub"],
+      "period": "2021 – 2023",
+      "company": "Finastra",
+      "position": [3, 0.5, 2],
+      "color": "#ef233c"
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.E. in Computer Engineering",
+      "institution": "University of Pune",
+      "year": "2018"
+    }
+  ],
+  "certifications": [
+    { "name": "AWS Certified Solutions Architect – Associate", "issuer": "Amazon Web Services", "year": "2021" },
+    { "name": "AWS Certified Developer – Associate", "issuer": "Amazon Web Services", "year": "2022" },
+    { "name": "HashiCorp Certified: Terraform Associate", "issuer": "HashiCorp", "year": "2023" }
+  ],
+  "openToRoles": [
+    { "title": "Cloud Engineering Lead", "type": "Full-time" },
+    { "title": "Principal Cloud Architect", "type": "Full-time" },
+    { "title": "Staff Engineer – Platform", "type": "Full-time" },
+    { "title": "Head of Cloud Infrastructure", "type": "Full-time" }
+  ],
+  "contact": [
+    {
+      "type": "email",
+      "label": "Book Interview",
+      "href": "mailto:khushjain12368@gmail.com?subject=Interview%20Opportunity%20–%20Cloud%20Engineering%20Lead&body=Hi%20Khush%2C%0A%0AI%20came%20across%20your%20profile%20and%20would%20love%20to%20discuss%20an%20opportunity%20with%20you.%0A%0ALooking%20forward%20to%20connecting!",
+      "trackingEvent": "cta_click"
+    },
+    {
+      "type": "linkedin",
+      "label": "LinkedIn",
+      "href": "https://linkedin.com/in/khush-jain",
+      "trackingEvent": "contact_click"
+    },
+    {
+      "type": "resume",
+      "label": "Download Resume",
+      "href": "/resume/Khush_Jain_Resume_1Page.pdf",
+      "trackingEvent": "resume_download"
+    },
+    {
+      "type": "phone",
+      "label": "+91 8780791994",
+      "href": "tel:+918780791994",
+      "trackingEvent": "contact_click"
+    }
+  ]
+}

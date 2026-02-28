@@ -1,43 +1,46 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { trackEvent } from "@/lib/telemetry";
 
 export default function AudioToggle() {
   const [enabled, setEnabled] = useState(false);
-  const [hasAudio, setHasAudio] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const audioCtxRef = useRef<AudioContext | null>(null);
+  const oscRef = useRef<OscillatorNode | null>(null);
+  const gainRef = useRef<GainNode | null>(null);
 
-  useEffect(() => {
-    const audio = new Audio("/audio/ambient-loop.mp3");
-    audio.loop = true;
-    audio.volume = 0.18;
-    audioRef.current = audio;
+  const initAudio = () => {
+    if (audioCtxRef.current) return;
+    const ctor = window.AudioContext || window.webkitAudioContext;
+    if (!ctor) return; // very old browsers
+    const ctx = new ctor();
+    const gain = ctx.createGain();
+    gain.gain.value = 0; // start muted
+    gain.connect(ctx.destination);
 
-    audio.addEventListener("canplaythrough", () => setHasAudio(true), {
-      once: true,
-    });
-    audio.load();
+    const osc = ctx.createOscillator();
+    osc.type = "sine";
+    osc.frequency.value = 110; // low hum
+    osc.connect(gain);
+    osc.start();
 
-    return () => {
-      audio.pause();
-      audio.src = "";
-    };
-  }, []);
+    audioCtxRef.current = ctx;
+    gainRef.current = gain;
+    oscRef.current = osc;
+  };
 
   const toggle = () => {
     const next = !enabled;
     setEnabled(next);
     trackEvent("audio_toggle", { source: "audio_toggle_button" });
 
-    if (!audioRef.current) return;
-    if (next) {
-      audioRef.current.play().catch(() => {
-        // Auto-play blocked — silently ignore
-        setEnabled(false);
-      });
-    } else {
-      audioRef.current.pause();
+    initAudio();
+    if (gainRef.current && audioCtxRef.current) {
+      gainRef.current.gain.setTargetAtTime(
+        next ? 0.03 : 0,
+        audioCtxRef.current.currentTime,
+        0.1
+      );
     }
   };
 
@@ -46,13 +49,7 @@ export default function AudioToggle() {
       onClick={toggle}
       aria-label={enabled ? "Disable ambient audio" : "Enable ambient audio"}
       aria-pressed={enabled}
-      title={
-        hasAudio
-          ? enabled
-            ? "Audio: ON"
-            : "Audio: OFF"
-          : "Audio file not found"
-      }
+      title={enabled ? "Audio: ON" : "Audio: OFF"}
       style={{
         position: "fixed",
         top: "1rem",

@@ -92,3 +92,9 @@ export interface TelemetryEvent {
   source: string;
   timestamp: string;
 }
+
+declare global {
+  interface Window {
+    webkitAudioContext?: typeof AudioContext;
+  }
+}

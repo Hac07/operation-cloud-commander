@@ -13,6 +13,7 @@ import CommandBar from "@/components/ui/CommandBar";
 import AudioToggle from "@/components/ui/AudioToggle";
 import Fallback2DHub from "@/components/ui/Fallback2DHub";
 import GuideHelper from "@/components/ui/GuideHelper";
+import WelcomeOverlay from "@/components/ui/WelcomeOverlay";
 
 // Dynamically import the 3D scene (client-only, no SSR)
 const MissionHubScene = dynamic(
@@ -69,6 +70,13 @@ export default function Page() {
   const [mobilePanel, setMobilePanel] = useState<"feed" | "ledger" | null>(
     null
   );
+  const [showWelcome, setShowWelcome] = useState<boolean>(() => {
+    try {
+      return !localStorage.getItem("welcomeSeen");
+    } catch {
+      return true;
+    }
+  });
   const webglSupported = useWebGLSupport();
 
   // Hash-based deep linking
@@ -347,6 +355,9 @@ export default function Page() {
       {/* Persistent UI */}
       {bootDone && (
         <>
+          {showWelcome && (
+            <WelcomeOverlay onClose={() => setShowWelcome(false)} />
+          )}
           <CommandBar data={portfolioData} />
           <AudioToggle />
           <GuideHelper

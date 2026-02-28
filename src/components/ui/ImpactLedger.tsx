@@ -16,34 +16,56 @@ function AnimatedCounter({
   value: string;
   duration?: number;
 }) {
-  const [display, setDisplay] = useState("0");
-  const hasAnimated = useRef(false);
+  const [display, setDisplay] = useState(value);
+  const prevNumeric = useRef<number | null>(null);
 
   useEffect(() => {
-    if (hasAnimated.current) return;
-    hasAnimated.current = true;
-
     const numeric = parseFloat(value.replace(/[^0-9.]/g, ""));
     if (isNaN(numeric)) {
+      // if we can't parse a number, just show the raw string
       setDisplay(value);
+      prevNumeric.current = null;
       return;
     }
 
     const prefix = value.match(/^[^0-9]*/)?.[0] ?? "";
     const suffix = value.match(/[^0-9.]*$/)?.[0] ?? "";
-    const steps = 40;
-    const interval = (duration * 1000) / steps;
+
+    // determine where to start the animation – if we have a previous
+    // numeric value, animate from that, otherwise don't animate at all
+    // (avoids a flash of `0` for small numbers on first render).
+    const start = prevNumeric.current ?? numeric;
+    prevNumeric.current = numeric;
+
+    if (start === numeric) {
+      setDisplay(value);
+      return;
+    }
+
+    const steps = 50;
+    const intervalMs = (duration * 1000) / steps;
     let step = 0;
 
     const timer = setInterval(() => {
       step++;
       const progress = step / steps;
       const eased = 1 - Math.pow(1 - progress, 3);
-      const current = eased * numeric;
-      const formatted = numeric % 1 === 0 ? Math.round(current).toString() : current.toFixed(2);
+      const current = start + (numeric - start) * eased;
+
+      let formatted: string;
+      if (numeric % 1 === 0) {
+        // for whole numbers avoid showing 0 at the beginning – always
+        // clamp to at least `1` once we start animating unless the target
+        // value is actually `0`.
+        const rounded = Math.round(current);
+        formatted = (numeric > 1 ? Math.max(rounded, 1) : rounded).toString();
+      } else {
+        formatted = current.toFixed(2);
+      }
+
       setDisplay(`${prefix}${formatted}${suffix}`);
       if (step >= steps) clearInterval(timer);
-    }, interval);
+    }, intervalMs);
 
     return () => clearInterval(timer);
   }, [value, duration]);

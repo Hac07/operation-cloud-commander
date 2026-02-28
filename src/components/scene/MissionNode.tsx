@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Text, Billboard } from "@react-three/drei";
+import { Billboard, Html } from "@react-three/drei";
 import * as THREE from "three";
 import type { Mission } from "@/lib/types";
 
@@ -89,31 +89,35 @@ export default function MissionNode({
         />
       </mesh>
 
-      {/* Label */}
+      {/* Label rendered as HTML to avoid missing font issues */}
       <Billboard follow lockX={false} lockY={false} lockZ={false}>
-        <Text
-          position={[0, 0.6, 0]}
-          fontSize={0.13}
-          color={hovered || isSelected ? mission.color : "#8d99ae"}
-          anchorX="center"
-          anchorY="bottom"
-          font="/fonts/Rajdhani-Medium.ttf"
-          maxWidth={2.5}
-        >
-          {mission.title.toUpperCase()}
-        </Text>
-        {(hovered || isSelected) && (
-          <Text
-            position={[0, 0.44, 0]}
-            fontSize={0.09}
-            color="#8d99ae"
-            anchorX="center"
-            anchorY="bottom"
-            maxWidth={2.5}
+        <Html center style={{ pointerEvents: "none", whiteSpace: "nowrap" }}>
+          <div
+            style={{
+              textAlign: "center",
+              fontFamily: "var(--font-heading)",
+              fontSize: "0.9rem",
+              color: hovered || isSelected ? mission.color : "#8d99ae",
+              textTransform: "uppercase",
+              letterSpacing: "0.05em",
+            }}
           >
-            {mission.period}
-          </Text>
-        )}
+            {mission.title}
+          </div>
+          {(hovered || isSelected) && (
+            <div
+              style={{
+                marginTop: "0.1rem",
+                fontFamily: "var(--font-mono)",
+                fontSize: "0.65rem",
+                color: "#8d99ae",
+                letterSpacing: "0.04em",
+              }}
+            >
+              {mission.period}
+            </div>
+          )}
+        </Html>
       </Billboard>
 
       {/* Point light */}
